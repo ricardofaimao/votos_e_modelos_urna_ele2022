@@ -35,6 +35,10 @@ Por exemplo, o link https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes202
 
 O programa baixa o arquivo zip automaticamente e realiza a leitura dos dados da urna. Se você já possui os arquivos .zip baixados, basta move-los para o mesmo diretório do programa antes de executá-lo.
 
+*** Para produzir todos os arquivos .csv, basta executar o comando a seguir:
+
+    python main.py
+
 Caso queira produzir o .csv de detemrinado turno e unidade federativa, faça conforme o exemplo a seguir:
 
 *** Para baixar os dados do segundo turno de Alagoas:
@@ -45,6 +49,8 @@ Caso queira produzir o .csv de detemrinado turno e unidade federativa, faça con
   
 # Observações
 
-1. O Estado de São Paulo possui o maior arquivo zip de dados de urna, em torno de 20GB. Certifique-se de possuir espaço disponível no seu computador para o programa baixar o arquivo.
+1. Caso queira refazer um arquivo .csv, primeiro certifique-se de que não exista no diretório do programa um arquivo .csv com o mesmo nome do arquivo .zip.
 
-2. O programa exclui o arquivo .zip após a produção do .csv
+2. O Estado de São Paulo possui o maior arquivo zip de dados de urna, em torno de 20GB. Certifique-se de possuir espaço disponível no seu computador para o programa baixar o arquivo.
+
+3. O programa exclui o arquivo .zip após a produção do .csv
