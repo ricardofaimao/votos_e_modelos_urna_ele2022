@@ -4,24 +4,26 @@
 
 # Sobre o programa
 
-Esse programa baixa os Dados de Urna diretamente do site do TSE para montar uma tabela que relaciona votos, modelos de urna, unidade federativa, município, zona e seção.
+Esse programa baixa os DADOS DE URNA diretamente do site do TSE para montar uma tabela que relaciona votos, modelos de urna, unidade federativa, município, zona e seção.
 
 Dois pacotes são necessários para rodar o programa: "py7zr" e "asn1tools". Lembre-se de instalar os pacotes antes de rodar o programa.
 
     pip install py7zr
     pip install asn1tools
 
-Os links dos Dados de Urna estão disponíveis no arquivo links.txt.
-Cada arquivo zip dessa lista se refere aos dados de urna de um determinado turno em uma determinada unidade federativa.
+Os links dos DADOS DE URNA estão disponíveis no arquivo links.txt.
+Cada arquivo .zip dessa lista se refere aos dados de urna de um determinado turno em uma determinada unidade federativa.
 
 # Como funciona
 
-1. O programa main.py seleciona um link do arquivo links.txt baixando os dados de urna
-2. Para cada urna presente no arquivo .zip, extrai o LOG (.logjez)
+O programa mains.py percorre as seguintes etapas:
+
+1. Seleciona um link do arquivo links.txt baixando os DADOS DE URNA de todas as seções de uma unidade federativa de um determinado turno (.zip)
+2. Para cada urna presente no arquivo .zip, extrai arquivo LOG DE URNA (.logjez)
 3. Extrai o arquivo logd.dat do arquivo .logjez utilizando o pacote py7zr
-4. Procura pelo modelo de urna no arquivo logd.dat
-5. Lê o arquivo de boletim de urna (.bu) utilizando o decodificador disponibilizado pelo próprio TSE (bu_dump.py e bu.asn1) no link https://www.tse.jus.br/eleicoes/eleicoes-2022/documentacao-tecnica-do-software-da-urna-eletronica o qual utiliza o pacote asn1tools.
-6. Registra os votos e os modelo da urna
+4. Procura pelo modelo de urna no arquivo logd.dat (arquivo que pode ser lido como arquivo de texto simples)
+5. Lê o arquivo de boletim de urna (.bu) utilizando o decodificador disponibilizado pelo próprio TSE (bu_dump.py e bu.asn1) no link https://www.tse.jus.br/eleicoes/eleicoes-2022/documentacao-tecnica-do-software-da-urna-eletronica, o qual utiliza o pacote asn1tools.
+6. Associa os votos com o modelo da urna
 7. Produz a tabela em formato .csv
 8. Deleta o arquivo .zip baixado
 9. Avança para o próximo link em links.txt
