@@ -9,7 +9,10 @@ Caso queira produzir o seu próprio .csv por meio do programa, baixe apenas o ar
 
 Dois pacotes são necessários para rodar o programa: "py7zr" e "asn1tools". Lembre-se de instalar os pacotes antes de rodar o programa.
 
-Os links dos Dados de Urna estão disponíveis no arquivo link.txt.
+    pip install py7zr
+    pip install asn1tools
+
+Os links dos Dados de Urna estão disponíveis no arquivo links.txt.
 Cada arquivo zip dessa lista se refere aos dados de urna de um determinado turno em uma determinada unidade federativa.
 
 # Como funciona?
