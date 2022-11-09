@@ -3,7 +3,7 @@
 
 Esse programa baixa os Dados de Urna diretamente do site do TSE para montar uma tabela que relaciona votos, modelos de urna, unidade federativa, município, zona e seção.
 
-Os arquivos .csv gerados pelo programa estão disponíveis nesse repositório.
+Os arquivos .csv gerados pelo programa estão disponíveis nesse repositório na pasta csv
 
 Caso queira produzir o seu próprio .csv por meio do programa, baixe apenas o arquivo main.py. 
 
