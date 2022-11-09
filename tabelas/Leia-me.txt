@@ -1,0 +1,3 @@
+Os arquivos .csv estão sendo produzidos pelo programa main.py.
+
+Assim que estiverem prontos, estarão disponíveis nessa pasta.
