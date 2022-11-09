@@ -1,9 +1,10 @@
-
 # Gerador de tabelas com votos por candidato e modelos de urna para eleição presidencial de 2022
 
-Esse programa baixa os Dados de Urna diretamente do site do TSE para montar uma tabela que relaciona votos, modelos de urna, unidade federativa, município, zona e seção.
+    Caso esteja procurando as tabelas .csv já produzidas pelo programa, acesse a pasta /tabelas acima
 
-As tabelas (.csv) geradas pelo programa estão disponíveis nesse repositório na pasta csv
+# Sobre o programa
+
+Esse programa baixa os Dados de Urna diretamente do site do TSE para montar uma tabela que relaciona votos, modelos de urna, unidade federativa, município, zona e seção.
 
 Caso queira produzir o seu próprio .csv por meio do programa, baixe apenas o arquivo main.py. 
 
@@ -15,7 +16,7 @@ Dois pacotes são necessários para rodar o programa: "py7zr" e "asn1tools". Lem
 Os links dos Dados de Urna estão disponíveis no arquivo links.txt.
 Cada arquivo zip dessa lista se refere aos dados de urna de um determinado turno em uma determinada unidade federativa.
 
-# Como funciona?
+# Como funciona
 
 1. O programa main.py seleciona um link do arquivo links.txt baixando os dados de urna
 2. Para cada urna presente no arquivo .zip, extrai o LOG (.logjez)
@@ -27,7 +28,7 @@ Cada arquivo zip dessa lista se refere aos dados de urna de um determinado turno
 8. Deleta o arquivo .zip baixado
 9. Avança para o próximo link em links.txt
 
-# Como utilizar?
+# Como utilizar
 
 Cada arquivo zip disponível no TSE representa uma unidade federativa em um determinado turno.
 
