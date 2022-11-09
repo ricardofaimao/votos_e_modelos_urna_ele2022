@@ -1,6 +1,8 @@
 # Gerador de tabelas com votos por candidato e modelos de urna para eleição presidencial de 2022
 
-    Caso esteja procurando as tabelas .csv já produzidas pelo programa, acesse a pasta /tabelas acima
+    Caso esteja procurando as tabelas .csv já produzidas pelo programa, acesse a pasta /tabelas
+    
+https://github.com/ricardofaimao/votos_e_modelos_urna_ele2022/tree/main/tabelas
 
 # Sobre o programa
 
