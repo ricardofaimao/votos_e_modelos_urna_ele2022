@@ -6,8 +6,6 @@
 
 Esse programa baixa os Dados de Urna diretamente do site do TSE para montar uma tabela que relaciona votos, modelos de urna, unidade federativa, município, zona e seção.
 
-Caso queira produzir o seu próprio .csv por meio do programa, baixe apenas o arquivo main.py. 
-
 Dois pacotes são necessários para rodar o programa: "py7zr" e "asn1tools". Lembre-se de instalar os pacotes antes de rodar o programa.
 
     pip install py7zr
