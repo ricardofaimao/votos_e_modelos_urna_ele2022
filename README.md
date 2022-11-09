@@ -1,5 +1,5 @@
 
-# Gerador de tabelas com votos por candidato e modelos de urna para eleição presidencial de 2022.
+# Gerador de tabelas com votos por candidato e modelos de urna para eleição presidencial de 2022
 
 Esse programa baixa os Dados de Urna diretamente do site do TSE para montar uma tabela que relaciona votos, modelos de urna, unidade federativa, município, zona e seção.
 
