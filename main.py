@@ -8,6 +8,11 @@ from tqdm import tqdm
 import time
 import sys
 import bu_dump
+import datetime
+import time
+
+def formatted_time(s):
+    return str(datetime.timedelta(seconds=round(s)))
 
 def download_file_with_progress_bar(link):
     
@@ -76,6 +81,7 @@ def get_all_zip_in_folder():
                     
     return filenames
 
+
 def create_csv(filename_zip):
     
     data = {}
@@ -115,6 +121,7 @@ def create_csv(filename_zip):
     print(f"reading {filename_zip}")
     count=0
     length = len(logjez_files)
+    start_time = time.time()
     for filename_logjez in logjez_files:
         count+=1
         
@@ -124,14 +131,17 @@ def create_csv(filename_zip):
         
         py7zr.SevenZipFile(file_logjez).extract(targets='logd.dat',path='temp')
         folder_and_file_of_dat = os.path.join('temp', 'logd.dat')
-        
+    
+        s = '?'
         with open(folder_and_file_of_dat, 'r', encoding='cp1252') as f:
             s = f.read()
             f.close()
-    
-        a = s.index('Modelo de Urna:')
-        s = s[a+16:a+22]
-        modelo = s.strip()
+        
+        try:
+            a = s.index('Modelo de Urna:')
+            modelo = s[a+16:a+22].strip()
+        except:
+           modelo = '?'
         
         os.remove(folder_and_file_of_dat)
         file_logjez.close()
@@ -159,8 +169,13 @@ def create_csv(filename_zip):
         qtdComparecimento = 0
         qtdEleitoresAptos = 0
         
-        filename_bu = filename_logjez.split('.')[0] + '.bu'
-        zipArchive.extract(filename_bu, 'temp')
+        try:
+            filename_bu = filename_logjez.split('.')[0] + '.bu'
+            zipArchive.extract(filename_bu, 'temp')
+        except:
+            filename_bu = filename_logjez.split('.')[0] + '.busa'
+            zipArchive.extract(filename_bu, 'temp')
+            
         folder_and_filename_bu = os.path.join('temp',filename_bu)
         bud = bu_dump.processa_bu(['bu.asn1'],folder_and_filename_bu)
         os.remove(folder_and_filename_bu)
@@ -205,7 +220,13 @@ def create_csv(filename_zip):
         
         # PRINT
         
-        print(f"\r seção {count}/{length}, modelo: {modelo}, município: {mun_name}", end="")
+        actual_time = time.time()
+        elapsed_time = actual_time - start_time
+        time_by_loop = elapsed_time/count
+        remaining_time = time_by_loop*(length-count)
+        remaining_str = formatted_time(remaining_time)
+        
+        print(f"\r seção {count}/{length}, modelo: {modelo}, z{zon_id}/s{sec_id} {mun_name:<30} [remaining {remaining_str}]", end="")
         time.sleep(0.001)
         
     csv_filename = filename_zip.split('.')[0] + '.csv'
@@ -215,6 +236,8 @@ def create_csv(filename_zip):
     df = pd.DataFrame(data) 
     df.to_csv(csv_filename)
     print("[done!]")
+    
+    zipArchive.close()
 
 def load_links():
     with open('links.txt') as f:
@@ -232,12 +255,15 @@ def do(skip_link_if_csv_exists=True, overwrite_zip=False, delete_zip_after_readi
         links = [link]
         
     for link in links:
+        
         link = link.strip()
         filename_zip = link.split('/')[-1]
         filename_csv = filename_zip.split('.')[0] + '.csv'
         
         if os.path.exists(filename_csv) & skip_link_if_csv_exists:
             continue
+        
+        print('---------------------------------------')
         
         if (not os.path.exists(filename_zip)) or overwrite_zip:
             print(f"downloading {link}")
@@ -255,10 +281,6 @@ def do(skip_link_if_csv_exists=True, overwrite_zip=False, delete_zip_after_readi
             os.remove(filename_zip)
             print("[done!]")
             
-        print('---------------------------------------')
-        
-# do(True,False,True,sys.args)
-
 do(True,True,True,sys.argv)
         
         
