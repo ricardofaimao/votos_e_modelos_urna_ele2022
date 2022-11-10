@@ -244,6 +244,19 @@ def load_links():
         lines = f.readlines()
     return lines
 
+def remove_file(dir_and_file,count=0):
+    
+    try:
+        os.remove(dir_and_file)
+    except:
+        count +=1
+        if count < 7:
+            print(f"waiting 10 secods to delete file {dir_and_file}")
+            sleep(10)
+            remove_file(dir_and_file,count)
+        else:
+            print(f"could not delete file {dir_and_file}")
+
 def do(skip_link_if_csv_exists=True, overwrite_zip=False, delete_zip_after_reading=False,args=sys.argv):
     
     if len(args) == 1:
@@ -278,9 +291,13 @@ def do(skip_link_if_csv_exists=True, overwrite_zip=False, delete_zip_after_readi
         
         if delete_zip_after_reading:
             print(f"deleting {filename_zip}", end=" ")
-            os.remove(filename_zip)
+            remove_file(filename_zip)
             print("[done!]")
             
+        
+        
+# do(True,False,True,sys.args)
+
 do(True,True,True,sys.argv)
         
         
