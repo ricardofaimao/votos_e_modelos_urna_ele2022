@@ -32,6 +32,7 @@ def download_file_with_progress_bar(link):
             progress_bar.update(len(data))
             file.write(data)
     progress_bar.close()
+    file.close()
     if total_size_in_bytes != 0 and progress_bar.n != total_size_in_bytes:
         print("ERROR, something went wrong")
 
